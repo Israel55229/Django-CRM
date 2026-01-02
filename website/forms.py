@@ -1,6 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
+from .models import Record
+from django.forms import ModelForm
 
 
 class SignUpForm(UserCreationForm):
@@ -30,3 +32,54 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].widget.attrs['placeholder'] = 'Confirm  password'
         self.fields['password2'].label = ""
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'	
+
+
+
+#  Form for add Records
+class AddRecordForm(forms.ModelForm):
+    class Meta:
+        model = Record
+        fields = "__all__"
+        widgets = {
+            'first_name': forms.TextInput(attrs={
+                'class': 'form-control fst-italic',
+                'placeholder': 'First Name',
+                'required': 'True',
+            }),
+            'last_name': forms.TextInput(attrs={
+                'class': 'form-control fst-italic',
+                'placeholder': 'Last Name',
+                'required': 'True'
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'form-control fst-italic',
+                'placeholder': 'Email Address',
+                'required': 'True'
+            }),
+            'phone': forms.TextInput(attrs={
+                'class': 'form-control fst-italic',
+                'placeholder': '(+233) 456 7890 422',
+                'required': 'True'
+            }),
+            'address': forms.TextInput(attrs={
+                'class': 'form-control fst-italic',
+                'placeholder': 'Enter address',
+                'required': 'True'
+            }),
+            'city': forms.TextInput(attrs={
+                'class': 'form-control fst-italic',
+                'placeholder': 'Enter city',
+                'required': 'True'
+            }),
+            'state': forms.TextInput(attrs={
+                'class': 'form-control fst-italic',
+                'placeholder': 'Enter state',
+                'required': 'True'
+            }),
+            'zipcode': forms.TextInput(attrs={
+                'class': 'form-control fst-italic',
+                'placeholder': '02231',
+                'required': 'True'
+            })
+        }
+        
